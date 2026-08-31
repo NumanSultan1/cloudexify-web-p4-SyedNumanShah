@@ -148,13 +148,23 @@ if (document.getElementById('registerForm')) {
         options: {
           data: {
             full_name: fullName,
-            phone: phone || ''
+            phone: phone ? phone : null
           }
         }
       });
 
       if (error) {
-        const errorMessage = /already|exists|taken/i.test(error.message) ? 'That email is already registered. Please use a different address.' : (error.message || 'Registration failed. Please check your details and try again.');
+        console.error('Supabase signUp error details:', error);
+        let errorMessage = error.message || 'Registration failed. Please check your details and try again.';
+        if (/already|exists|taken/i.test(error.message)) {
+          errorMessage = 'An account with this email already exists. Please log in instead.';
+        } else if (/password/i.test(error.message)) {
+          errorMessage = 'Your password does not meet the security requirements.';
+        } else if (/email/i.test(error.message)) {
+          errorMessage = 'Please enter a valid email address.';
+        } else if (/Database error|trigger|profile/i.test(error.message)) {
+          errorMessage = 'Your account could not be completed because of a server configuration problem. Please try again later.';
+        }
         setFeedback(registerFeedback, errorMessage, true);
         return;
       }
