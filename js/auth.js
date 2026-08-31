@@ -153,21 +153,86 @@ if (document.getElementById('registerForm')) {
   });
 }
 
-const logoutButton = document.querySelector('[data-logout]');
-if (logoutButton) {
-  logoutButton.addEventListener('click', async function (event) {
-    event.preventDefault();
-    const client = getClient();
+async function updateNavbarAuthState() {
+  const navActions = document.querySelector('.nav-actions');
+  if (!navActions) return;
 
-    if (!client) {
-      window.location.href = 'login.html';
-      return;
+  const client = getClient();
+  if (!client) return;
+
+  const { data: { session } } = await client.auth.getSession();
+  const loginLink = navActions.querySelector('a[href="login.html"]');
+  const registerLink = navActions.querySelector('a[href="register.html"]');
+  const adminNavLink = document.querySelector('.navbar-nav a[href="admin.html"]')?.closest('.nav-item');
+  const ordersNavLink = document.querySelector('.navbar-nav a[href="#orders"]')?.closest('.nav-item');
+
+  if (session) {
+    if (loginLink) loginLink.style.display = 'none';
+    if (registerLink) registerLink.style.display = 'none';
+
+    let userRole = 'customer';
+    if (typeof window.getCurrentUserProfile === 'function') {
+      const profile = await window.getCurrentUserProfile(client);
+      if (profile && profile.role) {
+        userRole = profile.role;
+      }
     }
 
-    const { error } = await client.auth.signOut();
-    if (!error) {
-      window.location.href = 'login.html';
+    if (userRole === 'admin') {
+      if (adminNavLink) adminNavLink.style.display = '';
+      if (ordersNavLink) ordersNavLink.style.display = 'none';
+    } else {
+      if (adminNavLink) adminNavLink.style.display = 'none';
+      if (ordersNavLink) ordersNavLink.style.display = '';
     }
+
+    if (!navActions.querySelector('[data-logout]')) {
+      const logoutBtn = document.createElement('button');
+      logoutBtn.className = 'btn btn-outline-primary';
+      logoutBtn.type = 'button';
+      logoutBtn.setAttribute('data-logout', 'true');
+      logoutBtn.textContent = 'Logout';
+      logoutBtn.addEventListener('click', handleLogout);
+      navActions.appendChild(logoutBtn);
+    }
+  } else {
+    if (loginLink) loginLink.style.display = '';
+    if (registerLink) registerLink.style.display = '';
+    if (adminNavLink) adminNavLink.style.display = 'none';
+    if (ordersNavLink) ordersNavLink.style.display = '';
+
+    const dynamicLogout = navActions.querySelector('[data-logout]');
+    if (dynamicLogout) dynamicLogout.remove();
+  }
+}
+
+async function handleLogout(event) {
+  if (event) event.preventDefault();
+  const client = getClient();
+
+  if (!client) {
+    window.location.href = 'login.html';
+    return;
+  }
+
+  const { error } = await client.auth.signOut();
+  if (!error) {
+    window.location.href = 'login.html';
+  }
+}
+
+document.querySelectorAll('[data-logout]').forEach((button) => {
+  button.addEventListener('click', handleLogout);
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  updateNavbarAuthState();
+});
+
+const clientForAuthState = getClient();
+if (clientForAuthState) {
+  clientForAuthState.auth.onAuthStateChange(() => {
+    updateNavbarAuthState();
   });
 }
 
