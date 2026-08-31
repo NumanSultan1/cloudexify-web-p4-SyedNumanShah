@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Brew & Bite is a premium cafe and bakery experience from Deolai, Swat, serving artisan coffee, handcrafted bakery favorites, and comforting daily specials."
+    />
+    <title>Brew & Bite | Cafe & Bakery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body class="brew-body">
+    <header class="site-header brew-header">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid px-3 px-lg-4">
+          <a class="navbar-brand d-flex align-items-center" href="index.html" aria-label="Brew and Bite home page">
+            <span class="brand-mark">B</span>
+            <span class="brand-stack">
+              <span class="brand-name">Brew &amp; Bite</span>
+              <small class="brand-tag">CAFE &amp; BAKERY</small>
+            </span>
+          </a>
+
+          <div class="header-location d-none d-xl-flex align-items-center">
+            <span class="location-dot"></span>
+            DEOLAI / SWAT
+          </div>
+
+          <button
+            class="navbar-toggler border-0"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mainNav"
+            aria-controls="mainNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav mx-auto">
+              <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="#menu">Menu</a></li>
+              <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+              <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+              <li class="nav-item"><a class="nav-link" href="#orders">My Orders</a></li>
+              <li class="nav-item"><a class="nav-link" href="admin.html">Admin</a></li>
+            </ul>
+
+            <div class="nav-actions d-flex align-items-center gap-2">
+              <button class="cart-trigger nav-cart" type="button" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas" aria-controls="cartOffcanvas">
+                Cart <span id="cartCountBadge" class="cart-badge">0</span>
+              </button>
+              <a class="btn btn-outline-primary" href="login.html">Login</a>
+              <a class="btn btn-primary" href="register.html">Register</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero-section">
+        <div class="hero-atmosphere"></div>
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow hero-kicker reveal-text">WELCOME TO</p>
+            <h1 class="hero-title reveal-text">Brew &amp; Bite</h1>
+            <p class="hero-subtitle reveal-text">CAFE &amp; BAKERY</p>
+            <p class="hero-line reveal-text">Where every sip tells a story and every bite feels like home.</p>
+            <div class="hero-actions reveal-text">
+              <a class="btn btn-primary btn-lg" href="#menu">Explore Menu</a>
+              <button class="btn btn-outline-primary btn-lg" type="button" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas">
+                Open Cart
+              </button>
+            </div>
+          </div>
+
+          <div class="hero-visual" aria-label="Editorial coffee advertisement scene">
+            <div id="heroPhotoScene" class="hero-photo-scene">
+              <div class="hero-photo-card">
+                <img
+                  class="hero-photo"
+                  src="https://images.unsplash.com/photo-1497636577773-f1231844b336?auto=format&fit=crop&w=1400&q=80"
+                  alt="Cinematic coffee cup on a dark cafe table"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-meta reveal-text">
+            <span>DEOLAI, SWAT</span>
+            <span>ESPRESSO BAR</span>
+            <span>BAKERY KITCHEN</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="statement-section" aria-label="Brand statement">
+        <div class="container">
+          <p class="eyebrow">A small ritual, carefully made</p>
+          <div class="statement-lines">
+            <span class="scroll-reveal">GOOD COFFEE.</span>
+            <span class="scroll-reveal">GOOD FOOD.</span>
+            <span class="scroll-reveal">GOOD MOMENTS.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="featured-section" id="featured">
+        <div class="container">
+          <div class="featured-heading">
+            <p class="eyebrow">Featured menu</p>
+            <h2>Warm plates, dark coffee, and bakery pieces composed for the table.</h2>
+          </div>
+          <div id="featuredGrid" class="featured-composition" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section class="menu-section" id="menu">
+        <div class="container">
+          <div class="menu-explorer-head">
+            <div>
+              <p class="eyebrow">Menu explorer</p>
+              <h2>Sixty plus cafe favorites, ready for the next service.</h2>
+            </div>
+            <div class="section-actions">
+              <div class="search-wrap">
+                <label class="visually-hidden" for="menuSearch">Search menu</label>
+                <input id="menuSearch" type="search" class="form-control" placeholder="Search by flavor, item, or mood" />
+              </div>
+              <button id="viewMenuToggle" class="btn btn-primary view-menu-btn" type="button">View All Menu</button>
+            </div>
+          </div>
+
+          <div class="filter-row" aria-label="Menu categories">
+            <button class="filter-btn active" type="button" data-category="All">All</button>
+            <button class="filter-btn" type="button" data-category="Coffee">Coffee</button>
+            <button class="filter-btn" type="button" data-category="Tea">Tea</button>
+            <button class="filter-btn" type="button" data-category="Cold Drinks">Cold Drinks</button>
+            <button class="filter-btn" type="button" data-category="Breakfast">Breakfast</button>
+            <button class="filter-btn" type="button" data-category="Pastries">Pastries</button>
+            <button class="filter-btn" type="button" data-category="Cakes">Cakes</button>
+            <button class="filter-btn" type="button" data-category="Sandwiches">Sandwiches</button>
+            <button class="filter-btn" type="button" data-category="Desserts">Desserts</button>
+            <button class="filter-btn" type="button" data-category="Specials">Specials</button>
+          </div>
+
+          <div id="menuGrid" class="menu-grid" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section id="about" class="story-section about-section">
+        <div class="container">
+          <div class="story-layout">
+            <div class="story-image">
+              <img src="https://images.unsplash.com/photo-1511081692775-05d0f180a065?auto=format&fit=crop&w=1100&q=82" alt="Warm cafe interior with bakery service" />
+            </div>
+            <div class="story-copy">
+              <p class="eyebrow">Deolai / Swat</p>
+              <h2>Built around quiet mornings, mountain light, and the comfort of something fresh from the oven.</h2>
+              <p>
+                Brew &amp; Bite is a neighborhood cafe and bakery concept rooted in Deolai, Swat — a place for slow mornings,
+                carefully brewed coffee, and pastries baked to be shared with people you care about.
+              </p>
+              <p>
+                We focus on quality ingredients, balanced flavors, and a warm space that feels easy to return to throughout the day.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="categories-section">
+        <div class="container">
+          <div class="section-heading center-copy">
+            <p class="eyebrow">Popular picks</p>
+            <h2>Favorites from the Brew &amp; Bite counter.</h2>
+          </div>
+          <div class="category-grid">
+            <article class="category-card">
+              <span class="category-icon">☕</span>
+              <h3>Coffee</h3>
+              <p>House espresso, creamy lattes, and warming brews.</p>
+            </article>
+            <article class="category-card">
+              <span class="category-icon">🫖</span>
+              <h3>Tea</h3>
+              <p>Comforting infusions and spiced favorites for slow afternoons.</p>
+            </article>
+            <article class="category-card">
+              <span class="category-icon">🥐</span>
+              <h3>Pastries</h3>
+              <p>Flaky layers, buttery bakes, and easy bakery staples.</p>
+            </article>
+            <article class="category-card">
+              <span class="category-icon">🍽️</span>
+              <h3>Breakfast</h3>
+              <p>Good plates for a start-before-the-day-begins moment.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="why-us-section">
+        <div class="container">
+          <div class="section-heading center-copy">
+            <p class="eyebrow">Why choose us</p>
+            <h2>Fresh details, warm service, and a menu that feels like home.</h2>
+          </div>
+          <div class="benefit-grid">
+            <article>
+              <strong>Fresh-baked daily</strong>
+              <p>Bakery items are prepared in small batches for flavor and consistency.</p>
+            </article>
+            <article>
+              <strong>Quality ingredients</strong>
+              <p>Simple ingredients, carefully balance, and a comforting finish.</p>
+            </article>
+            <article>
+              <strong>Local comfort</strong>
+              <p>A familiar coffee-and-bakery routine built for everyday moments.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="location-section">
+        <div class="container location-grid">
+          <div class="location-card">
+            <p class="eyebrow">Location</p>
+            <h2>Deolai, Swat</h2>
+            <p>Fresh coffee, warm bakery bites, and everyday comfort in the heart of Deolai.</p>
+          </div>
+          <div class="hours-card">
+            <p class="eyebrow">Opening hours</p>
+            <ul>
+              <li><span>Monday — Sunday</span><strong>[EDIT HOURS]</strong></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="contact-section">
+        <div class="container contact-grid">
+          <div class="contact-copy">
+            <p class="eyebrow">Contact</p>
+            <h2>Reach us for a quick coffee run or a table for two.</h2>
+            <ul class="contact-list">
+              <li><strong>Phone:</strong> [EDIT PHONE]</li>
+              <li><strong>Email:</strong> [EDIT EMAIL]</li>
+              <li><strong>Location:</strong> Deolai, Swat</li>
+            </ul>
+          </div>
+
+          <form id="contactForm" class="contact-form" novalidate>
+            <div class="form-group">
+              <label for="contactName">Name</label>
+              <input id="contactName" type="text" name="name" required />
+            </div>
+            <div class="form-group">
+              <label for="contactEmail">Email</label>
+              <input id="contactEmail" type="email" name="email" required />
+            </div>
+            <div class="form-group">
+              <label for="contactMessage">Message</label>
+              <textarea id="contactMessage" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Message</button>
+            <div id="contactFeedback" class="form-feedback" aria-live="polite"></div>
+          </form>
+        </div>
+      </section>
+
+      <section class="orders-section" id="orders">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Order tracking</p>
+            <h2>My Orders</h2>
+          </div>
+          <div id="customerOrders" class="order-list" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section id="orderConfirmation" class="confirmation-section d-none" aria-live="polite">
+        <div class="container confirmation-panel">
+          <p class="eyebrow">Order received</p>
+          <h2>Thank you for ordering from Brew &amp; Bite.</h2>
+          <div id="confirmationMeta" class="confirmation-meta"></div>
+          <div id="confirmationItems" class="confirmation-items"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-layout">
+        <div>
+          <strong>Brew &amp; Bite</strong>
+          <span class="footer-text">CAFE &amp; BAKERY</span>
+        </div>
+
+        <div class="footer-links-wrap">
+          <div class="footer-column">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="#menu">Menu</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Customer</h3>
+            <ul>
+              <li><a href="login.html">Login</a></li>
+              <li><a href="#orders">My Orders</a></li>
+              <li><button type="button" class="footer-cart-trigger" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas" aria-controls="cartOffcanvas">Cart</button></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <span>© 2026 Brew &amp; Bite</span>
+        <span>DEOLAI, SWAT</span>
+      </div>
+    </footer>
+
+    <aside class="offcanvas offcanvas-end cart-drawer" tabindex="-1" id="cartOffcanvas" aria-labelledby="cartOffcanvasLabel">
+      <div class="offcanvas-header">
+        <div>
+          <p class="eyebrow">Current order</p>
+          <h5 class="offcanvas-title" id="cartOffcanvasLabel">Your Cart</h5>
+        </div>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close cart"></button>
+      </div>
+      <div class="offcanvas-body cart-offcanvas-body">
+        <div id="cartItems" class="cart-items"></div>
+        <div id="cartFeedback" class="cart-feedback" aria-live="polite"></div>
+
+        <div class="cart-summary">
+          <div class="cart-summary-row">
+            <span>Subtotal</span>
+            <strong id="cartSubtotal">Rs. 0</strong>
+          </div>
+          <div class="cart-summary-row total">
+            <span>Total</span>
+            <strong id="cartTotal">Rs. 0</strong>
+          </div>
+          <button type="button" class="btn btn-primary w-100" id="checkoutButton">Checkout</button>
+        </div>
+      </div>
+    </aside>
+
+    <div class="modal fade" id="checkoutModal" tabindex="-1" aria-labelledby="checkoutModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content checkout-modal-content">
+          <div class="modal-header">
+            <div>
+              <h5 class="modal-title" id="checkoutModalLabel">Place your order</h5>
+            </div>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close checkout"></button>
+          </div>
+
+          <form id="checkoutForm" novalidate>
+            <div class="modal-body checkout-modal-body">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="checkoutName" class="form-label">Customer name</label>
+                  <input id="checkoutName" type="text" class="form-control" required />
+                </div>
+                <div class="col-md-6">
+                  <label for="checkoutPhone" class="form-label">Phone</label>
+                  <input id="checkoutPhone" type="tel" class="form-control" required />
+                </div>
+                <div class="col-md-6">
+                  <label for="checkoutType" class="form-label">Order type</label>
+                  <select id="checkoutType" class="form-select" required>
+                    <option value="Pickup">Pickup</option>
+                    <option value="Dine-in">Dine-in</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label for="checkoutTable" class="form-label">Table / Order info</label>
+                  <input id="checkoutTable" type="text" class="form-control" placeholder="e.g. Window table or pickup note" />
+                </div>
+                <div class="col-12">
+                  <label for="checkoutNotes" class="form-label">Notes</label>
+                  <textarea id="checkoutNotes" class="form-control" rows="3" placeholder="Any extra instructions?"></textarea>
+                </div>
+              </div>
+              <div id="checkoutFormFeedback" class="form-feedback" aria-live="polite"></div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-primary">Place Order</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase.js?v=20260830"></script>
+    <script src="js/auth.js?v=20260830"></script>
+    <script src="js/three-scene.js?v=20260830"></script>
+    <script src="js/menu.js?v=20260830"></script>
+    <script src="js/cart.js?v=20260830"></script>
+    <script src="js/orders.js?v=20260830"></script>
+  </body>
+</html>
