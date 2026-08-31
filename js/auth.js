@@ -37,6 +37,13 @@ async function redirectIfAuthenticated() {
 
   const { data: { session }, error } = await client.auth.getSession();
   if (!error && session && (window.location.pathname.endsWith('/login.html') || window.location.pathname.endsWith('/register.html'))) {
+    if (typeof window.getCurrentUserProfile === 'function') {
+      const profile = await window.getCurrentUserProfile(client);
+      if (profile && profile.role === 'admin') {
+        window.location.href = 'admin.html';
+        return;
+      }
+    }
     window.location.href = 'index.html';
   }
 }
@@ -70,12 +77,21 @@ if (document.getElementById('loginForm')) {
       const { data, error } = await configCheck.client.auth.signInWithPassword({ email, password });
 
       if (error) {
-        setFeedback(authFeedback, 'Login failed. Please check your email and password.', true);
+        setFeedback(authFeedback, error.message || 'Login failed. Please check your email and password.', true);
         return;
       }
 
       setFeedback(authFeedback, 'Login successful. Redirecting…');
-      window.location.href = 'index.html';
+
+      let targetUrl = 'index.html';
+      if (typeof window.getCurrentUserProfile === 'function') {
+        const profile = await window.getCurrentUserProfile(configCheck.client);
+        if (profile && profile.role === 'admin') {
+          targetUrl = 'admin.html';
+        }
+      }
+
+      window.location.href = targetUrl;
     } catch (error) {
       setFeedback(authFeedback, 'Unable to connect to Supabase right now. Please try again.', true);
     }
@@ -138,15 +154,24 @@ if (document.getElementById('registerForm')) {
       });
 
       if (error) {
-        const errorMessage = /already|exists|taken/i.test(error.message) ? 'That email is already registered. Please use a different address.' : 'Registration failed. Please check your details and try again.';
+        const errorMessage = /already|exists|taken/i.test(error.message) ? 'That email is already registered. Please use a different address.' : (error.message || 'Registration failed. Please check your details and try again.');
         setFeedback(registerFeedback, errorMessage, true);
         return;
       }
 
-
-
-      setFeedback(registerFeedback, 'Registration successful. Check your email to confirm your account, then log in.');
-      registerForm.reset();
+      if (data.session) {
+        setFeedback(registerFeedback, 'Registration successful. Redirecting…');
+        registerForm.reset();
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 1200);
+      } else {
+        setFeedback(registerFeedback, 'Registration successful. Please check your email to verify your account before logging in.');
+        registerForm.reset();
+        setTimeout(() => {
+          window.location.href = 'login.html';
+        }, 3000);
+      }
     } catch (error) {
       setFeedback(registerFeedback, 'Unable to create the account right now. Please try again.', true);
     }
